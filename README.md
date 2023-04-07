@@ -15,18 +15,29 @@ It is possible to generate a 2D vector of doubles containing random numbers betw
 It is also possible to print these vectors in a format similar to Python. <- This will be upgraded to a generic vector print function soon.
 
 ### Sample
-'''cpp
-class Sample {
-public:
-	int dimCount = 1;
-	int size = 10;
-	int min = 0;
-	int max = 1;
-	std::vector<std::vector<double>> genSample();
-	std::vector<double> genVector();
-	void printVector(std::vector<std::vector<double>> * pVct);
-	void print(std::vector<double>* pVct);
-	void askSample();
-	std::vector<double> circleCondition(std::vector<std::vector<double>>* pVct);
-};
-'''
+The Sample class contains a number of functions to generate a vector of random numbers of any specified length, or number of spatial dimensions. 
+Below is an example of generating a cubic sample of random numbers for potential use in calculating the volume of a sphere without pi.
+
+
+```cpp
+Sample sampleExample; // Create default Sample object
+sampleExample.size = 1000000; // Assign size per dimension
+sampleExample.dimCount = 3; // Assign number of dimensions
+
+std::vector<std::vector<double>> randSample = sampleExample.genSample(); // Generate randSample vector from sampleExample attributes
+std::vector<std::vector<double>>* pRandSample = &randSample; // Pointer to randSample
+sample.printVector(pRandSample); // Print randSample
+
+delete[] pRandSample // Pointer deletion
+```
+
+The class relies on manual memory management.  Vectors of random samples must be passed in as pointers.  
+In this version, the data type must be specified in full, however the Vector class update will make declaring vectors easy.  See below:
+
+
+Future functionality:
+```cpp
+Vector::NVector<2, double> randSample = sampleExample.genSample();
+```
+
+Additionally all print functions will be contained within the NVector class or struct.
