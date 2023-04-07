@@ -1,8 +1,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <memory>
 #include "./Sample.h"
-#include "./Pointer.h"
 
 std::vector<std::vector<double>> Sample :: genSample() {
 	// Declare output vector
@@ -25,7 +25,7 @@ std::vector<double> Sample :: genVector() {
 	}
 	return randSample;
 };
-void Sample :: printVector(SmartPtr<std::vector<std::vector<double>>> pVct) {
+void Sample :: printVector(std::vector<std::vector<double>>* pVct) {
 	std::string catVector;
 	std::cout << "Printing sample...\n";
 
@@ -38,7 +38,7 @@ void Sample :: printVector(SmartPtr<std::vector<std::vector<double>>> pVct) {
 	}
 	std::cout << catVector;
 };
-void Sample::print(SmartPtr<std::vector<double>> pVct) {
+void Sample::print(std::vector<double>* pVct) {
 	std::string catVector;
 	std::cout << "Printing sample...\n";
 	catVector += "[";
@@ -59,22 +59,15 @@ void Sample :: askSample() {
 	std::cin >> max;
 	std::cout << "Values accepted\n";
 };
-std::vector<double> Sample::circleCondition(SmartPtr<std::vector<std::vector<double>>> pVct) {
+std::vector<double> Sample::circleCondition(std::vector<std::vector<double>>* pVct) {
 	std::vector<double> output (size, 0);
-	std::vector<std::vector<double>> circlePrint = { output }; // DEBUG
-	SmartPtr<std::vector<std::vector<double>>> pDebug(&circlePrint); // DEBUG
-	printVector(pDebug); // DEBUG
 	std::vector<std::vector<double>> vct = *pVct;
 	double val;
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < dimCount; j++) {
-			val = vct[i][j];
-			cout << std::to_string(val);
+			val = vct[j][i];
 			output[i] += val * val;
 		}
 	}
-	circlePrint = { output }; // DEBUG
-	SmartPtr<std::vector<std::vector<double>>> pDebug2(&circlePrint); // DEBUG
-	printVector(pDebug2); // DEBUG
 	return output;
 };

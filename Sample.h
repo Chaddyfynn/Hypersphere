@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "./Pointer.h"
+#include <memory>
 
 class Sample {
 public:
@@ -12,8 +12,8 @@ public:
 	int max = 1;
 	std::vector<std::vector<double>> genSample();
 	std::vector<double> genVector();
-	void printVector(SmartPtr<std::vector<std::vector<double>>> pVct);
-	void print(SmartPtr<std::vector<double>> pVct);
+	void printVector(std::vector<std::vector<double>> * pVct);
+	void print(std::vector<double>* pVct);
 	void askSample();
-	std::vector<double> circleCondition(SmartPtr<std::vector<std::vector<double>>> pVct);
+	std::vector<double> circleCondition(std::vector<std::vector<double>>* pVct);
 };
